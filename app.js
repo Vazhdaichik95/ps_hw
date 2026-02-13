@@ -1,11 +1,20 @@
 'use strict';
 function getRandomFromDice(dice) {
+  const diceSet = new Set([
+    'd4',
+    'd6',
+    'd8',
+    'd10',
+    'd12',
+    'd16',
+    'd20'
+  ]);
+
+  if(!diceSet.has(dice)) return null;
+
   const diceWithoutD = String(dice).replace('d','');
-  if (Number.isFinite(diceWithoutD)) return null;
 
   const numDice = Number.parseInt(diceWithoutD, 10);
 
-  if(numDice<4 || numDice>20) return null;
-
-  return Math.floor(Math.random()*(numDice-1+1)+1);
+  return Math.floor(Math.random() * numDice)+1;
 }
